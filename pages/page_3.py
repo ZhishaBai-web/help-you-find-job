@@ -1,14 +1,45 @@
 import streamlit as st
-import json
 import pandas as pd
 import numpy as np
 from tools_info import get_top50_df
 from tools_info import concat_files
 from tools_info import get_analysis_df
-
-import matplotlib
+import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
+
+
+# 1. 尝试动态加载同目录下的 msyh.ttc 字体（直接通过 fname 设置，绕过 Linux 对 .ttc 的 rcParams 赋值 Bug）
+font_path = "msyh.ttc"
+custom_font = None
+
+if os.path.exists(font_path):
+    try:
+        # 显式注册字体文件
+        fm.fontManager.addfont(font_path)
+        font_prop = fm.FontProperties(fname=font_path)
+        custom_font = font_prop.get_name()
+    except Exception:
+        pass
+
+# 2. 构建跨平台字体优先级列表（按系统顺序自动降级匹配）
+font_list = []
+if custom_font:
+    font_list.append(custom_font)
+
+# 补充跨平台默认字体
+font_list.extend([
+    "Microsoft YaHei",    # Windows 微软雅黑
+    "SimHei",             # Windows 黑体
+    "PingFang SC",        # Mac 苹方
+    "Noto Sans CJK SC",   # Streamlit Cloud (Linux packages.txt 安装的字体)
+    "DejaVu Sans"         # 兜底英文
+])
+
+# 3. 设置 Matplotlib 字体配置
+plt.rcParams["font.sans-serif"] = font_list
+plt.rcParams["axes.unicode_minus"] = False
 
 
 if "new_file" not in st.session_state:
@@ -17,6 +48,7 @@ if "top50_df" not in st.session_state:
     st.session_state.top50_df = False
 if "total_df" not in st.session_state:
     st.session_state.total_df = False
+
 
 
 st.set_page_config(
@@ -795,7 +827,7 @@ if single_info:
         with tab2:
             col1, col2 = st.columns([1, 1])
             with col1:
-                matplotlib.rc("font", family="Microsoft YaHei")
+
                 score_data = pd.Series({
                     "能力得分": job["能力得分"],
                     "职责得分": job["职责得分"],
@@ -881,7 +913,7 @@ with st.status("分析准备中...", expanded=True) as status:
                 high_match_count = (total_df["总得分"] >= 80).sum()
                 st.metric("高匹配岗位( > 80分)", f"{high_match_count} 个")
 
-            matplotlib.rc("font", family="Microsoft YaHei")
+
             fig, ax = plt.subplots(2, 2, figsize=(16, 14))
             plt.subplots_adjust(hspace=0.3, wspace=0.23)
             fig.patch.set_facecolor('none')  # 设置画布背景透明
