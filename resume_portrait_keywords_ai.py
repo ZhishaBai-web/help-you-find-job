@@ -1,4 +1,4 @@
-import fitz
+import pymupdf
 # import easyocr
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -43,7 +43,7 @@ def get_date():
 # def get_resume_text1(resume_bytes):
 #     """获得PDF简历文本（文本块 + 图片快）"""
 #     reader = easyocr.Reader(['ch_sim', 'en'],gpu=False)
-#     docs = fitz.open("pdf",resume_bytes)
+#     docs = pymupdf.open("pdf",resume_bytes)
 #     content = []
 #     for doc in docs:
 #         doc_text = doc.get_text().strip()
@@ -65,7 +65,7 @@ def get_date():
 
 def get_resume_text2(resume_bytes):
     """获得PDF简历文本（文本块）"""
-    docs = fitz.open("pdf",resume_bytes)
+    docs = pymupdf.open("pdf",resume_bytes)
     content = []
     for doc in docs:
         doc_text = doc.get_text().strip()
@@ -73,7 +73,7 @@ def get_resume_text2(resume_bytes):
             doc_text = doc.get_text().replace(" ", "")
             content.append(doc_text)
     resume_text = "".join(content)
-    if content=="":
+    if not content:
         resume_text="扫描结果为空，请重新上传 pdf。注意：pdf 需为具有文本块的 pdf，而非只有图片块。"
     return resume_text
 
@@ -621,7 +621,7 @@ def get_resume_portrait_keywords():
     url = "https://api.modelbest.cn/v1"
     model = "MiniCPM-O-4.5-9B"
     resume_path="resume.pdf"
-    doc = fitz.open(resume_path)
+    doc = pymupdf.open(resume_path)
     resume_bytes = doc.tobytes()
     resume_text = get_resume_text2(resume_bytes)
     print(resume_text)

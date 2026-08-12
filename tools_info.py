@@ -80,23 +80,8 @@ def get_analysis_df(file):
     else:
         analysis_data = json.load(file)
         df=pd.DataFrame(analysis_data)
-    analysis_df = df.rename(
-        columns={
-            "match_score": "总得分",
-            "ability_match": "能力得分",
-            "responsibility_match": "职责得分",
-            "career_match": "发展得分",
-            "background_match": "背景得分",
-            "development_value": "潜力得分",
-            "recommend_reason": "推荐理由",
-            "matching_strengths": "匹配优势",
-            "possible_gaps": "待提升项",
-            "development_analysis": "发展建议",
-        }
-    )
-
-    analysis_df[["最低薪资", "最高薪资"]] = analysis_df["薪资"].apply(lambda x: pd.Series(parse_salary(x)))
-    return analysis_df
+    df[["最低薪资", "最高薪资"]] = df["薪资"].apply(lambda x: pd.Series(parse_salary(x)))
+    return df
 
 
 def get_top50_df(file):
@@ -105,15 +90,3 @@ def get_top50_df(file):
     top50_df.index = top50_df.index + 1
     return top50_df
 
-# file_path=r"职位信息 (7).json"
-# top50_df=get_top50_df(file_path)
-
-
-
-
-
-
-
-
-
-# files=["爬虫.json","scrapy.json"]

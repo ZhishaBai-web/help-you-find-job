@@ -903,11 +903,9 @@ with tab1:
     if file_bytes and st.session_state.resume_text is None:
         with st.spinner("简历正在扫码，请稍等..."):
             st.session_state.resume_text = get_resume_text2(file_bytes)
-            st.markdown('<div>', unsafe_allow_html=True)
             st.write(st.session_state.resume_text)
             st.markdown('</div>', unsafe_allow_html=True)
     elif st.session_state.resume_text:
-        st.markdown('<div>', unsafe_allow_html=True)
         st.write(st.session_state.resume_text)
         st.markdown('</div>', unsafe_allow_html=True)
     else:

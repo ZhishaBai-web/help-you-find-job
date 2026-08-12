@@ -737,19 +737,52 @@ with st.status("🌪️ 正在启动分析引擎...", expanded=True) as status:
 st.markdown('</div>', unsafe_allow_html=True)
 
 # =============================================================================
-# 📦 分析结果下载区（玻璃卡片）
+# 📦 分析结果下载区
 # =============================================================================
 
 
+
+def clean_df(df):
+    score_cols = [
+        "ability_match",
+        "responsibility_match",
+        "career_match",
+        "background_match",
+        "development_value"
+    ]
+
+    for col in score_cols:
+        df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
+    df["ability_match"] = df["ability_match"].clip(0, 35)
+    df["responsibility_match"] = df["responsibility_match"].clip(0, 25)
+    df["career_match"] = df["career_match"].clip(0, 20)
+    df["background_match"] = df["background_match"].clip(0, 10)
+    df["development_value"] = df["development_value"].clip(0, 10)
+    df["match_score"] = df["ability_match"] + df["responsibility_match"] + df["career_match"] + df["background_match"] + df[
+        "development_value"]
+    df = df.rename(
+        columns={
+            "match_score": "总得分",
+            "ability_match": "能力得分",
+            "responsibility_match": "职责得分",
+            "career_match": "发展得分",
+            "background_match": "背景得分",
+            "development_value": "潜力得分",
+            "recommend_reason": "推荐理由",
+            "matching_strengths": "匹配优势",
+            "possible_gaps": "待提升项",
+            "development_analysis": "发展建议",
+        }
+    )
+    return df
+
 if st.session_state.new_job_infos:
     colu1, colu2 = st.columns([1, 1])
-    with colu1:
-        json_data = json.dumps(
-            st.session_state.new_job_infos,
-            ensure_ascii=False,
-            indent=4
-        )
+    df = pd.DataFrame(st.session_state.new_job_infos)
+    df = clean_df(df)
 
+    with colu1:
+        json_data=df.to_json(orient="records", force_ascii=False,indent=2)
         st.download_button(
             label="📥 下载岗位分析结果(JSON)",
             data=json_data,
@@ -759,22 +792,6 @@ if st.session_state.new_job_infos:
         )
 
     with colu2:
-        df = pd.DataFrame(st.session_state.new_job_infos)
-        df = df.rename(
-            columns={
-                "match_score": "总得分",
-                "ability_match": "能力得分",
-                "responsibility_match": "职责得分",
-                "career_match": "发展得分",
-                "background_match": "背景得分",
-                "development_value": "潜力得分",
-                "recommend_reason": "推荐理由",
-                "matching_strengths": "匹配优势",
-                "possible_gaps": "待提升项",
-                "development_analysis": "发展建议",
-            }
-        )
-
         for col in df.columns:
             df[col] = df[col].apply(
                 lambda x:

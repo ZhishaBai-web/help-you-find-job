@@ -703,7 +703,7 @@ if submit1:
         st.download_button(
             label="📥 下载岗位数据(JSON)",
             data=json_bytes,
-            file_name="../合并结果.json",
+            file_name="合并结果.json",
             mime="application/json",
             use_container_width=True
         )
