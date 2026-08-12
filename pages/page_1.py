@@ -851,7 +851,7 @@ if scrapy:
             st.success("🎉 爬取工作已完成，记得下载岗位数据喵。")
             download = True
         except Exception:
-            st.error("😭 这次没有找到目标喵，请检查路径或条件是否正确。")
+            st.error("😭 这次没有找到目标喵，请检查路径或条件是否正确，爬虫喵不支持线上版哦，建议本地部署后使用。")
             status.update(label="捕猎失败喵~", state="error", expanded=True)
             download = False
 
