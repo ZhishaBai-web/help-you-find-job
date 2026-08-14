@@ -47,7 +47,7 @@ help-you-find-job/
 3. 第三方库下载完毕 → 在 Terminal 输入：streamlit run main.py 并回车 →  等待 streamlit 启动。
 
 - 关于 PyCharm 虚拟环境的创建：File → Settings... → Project：<你的项目名> → Python Interpreter → Add Interpreter → Add Local Interpreter... → OK
-- 关于第三方库下载的说明：由于 requirements.txt 中第三方库数量较多，下载较慢，==若本地部署的目的仅为使用项目功能，不做项目改造==，部署时不必 Download ZIP，==只需下载爬虫相关的文件（page_1.py 和 scrapy_info.py）即可==，下载第三方库时仅需安装爬虫和 Streamlit 相关依赖库（在 Terminal 输入：pip install DrissionPage streamlit 并回车），运行时，在 Terminal 输入：streamlit run page_1.py 并回车。使用本地爬虫功能获取数据后，其他功能均可通过线上模式实现。
+- 关于第三方库下载的说明：由于 requirements.txt 中第三方库数量较多，下载较慢，若本地部署的目的仅为使用项目功能，不做项目改造，部署时不必 Download ZIP，只需下载爬虫相关的文件（page_1.py 和 scrapy_info.py）即可，下载第三方库时仅需安装爬虫和 Streamlit 相关依赖库（在 Terminal 输入：pip install DrissionPage streamlit 并回车），运行时，在 Terminal 输入：streamlit run page_1.py 并回车。使用本地爬虫功能获取数据后，其他功能均可通过线上模式实现。
 
 ### 0.3 页面介绍
 
@@ -87,7 +87,7 @@ streamlit 运行后，将在浏览器看到工作喵页面（main 页），同�
 > JSON 画像结果 → 检索词生成模型 → 岗位检索词
 > JSON 画像结果 → 报告生成模型 → 职场报告
 > 职场报告结果 + 用户提问 → AI 聊天模型 → 聊天喵回答
-- JSON 画像将作为后续岗位匹配度评分的依据，为提高打分的准确性，==简历精炼模型和画像生成模型 应尽量选择较新的模型==。
+- JSON 画像将作为后续岗位匹配度评分的依据，为提高打分的准确性，简历精炼模型和画像生成模型 应尽量选择较新的模型。
 
 ![示意图](assets/f2aeae6c82c3518ed54c8a0e3a9ff9b9_720.jpg)
 
@@ -122,7 +122,7 @@ streamlit 运行后，将在浏览器看到工作喵页面（main 页），同�
 
 - 采集中心模块的目标网址会在检索中心模块和参数配置模块完成设置后自动生成；
 - 系统会根据检索词和筛选参数自动生成目标采集网址。该网址仅作为默认配置，用户可根据实际需求进一步修改筛选条件，并将修改后的网址复制到网址输入框中；
-- 由于 DrissionPage 自动化爬虫技术，需要调用本地浏览器，故需填写浏览器可执行文件（.exe）的绝对路径（==删除双引号==）。
+- 由于 DrissionPage 自动化爬虫技术，需要调用本地浏览器，故需填写浏览器可执行文件（.exe）的绝对路径（删除双引号）。
 
 ![示意图](assets/Pasted%20image%2020260814150824.png)
 
@@ -154,7 +154,7 @@ streamlit 运行后，将在浏览器看到工作喵页面（main 页），同�
 - 普通模式将对所有上传的岗位信息进行打分；
 - RAG 模式首先利用向量检索从上传的岗位信息中筛选相关性最高的 50 条岗位，再对这 50 条岗位进行 LLM 匹配评分。
 - RAG 模式开启的前提：上传的岗位信息大于 50 条；
-- ==只有当上传的岗位信息远大于 50 条时，才推荐开启 RAG 模式==，以减少 Token 消耗；
+- 只有当上传的岗位信息远大于 50 条时，才推荐开启 RAG 模式，以减少 Token 消耗；
 - API 授权模块和向量 API 授权模块 都位于侧边栏；
 - API 授权模块用于配置岗位打分时调用的 LLM；
 - 向量 API 授权模块用于配置 RAG 模式所使用的 Embedding 模型，配置向量 API 时需注意，所选 API 是否提供文本向量化模型。
