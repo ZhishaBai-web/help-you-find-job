@@ -1,16 +1,3 @@
----
-creation date: 2026-07-28
-latest date: 2026-08-14
-aliases:
-  - work cat · AI agent
-tags:
-  - python
-  - streamlit
-  - langchain
-  - DrissionPage
-  - Pandas
-  - Seaborn
----
 # 0. 前言
 
 ## 0.0 为什么做这个项目
@@ -80,7 +67,7 @@ streamlit 运行后，将在浏览器看到工作喵页面（main 页），同�
 > 3. 在 main.py 中，将所有的 get_resume_text2 替换为 get_resume_text1。
 > 4. 重新运行 streamlit。
 
-![[Pasted image 20260814130224.png]]
+![示意图](assets/Pasted_image_20260814130224.png])
 
 #### 0.3.1.2 偏好选择模块
 
