@@ -5,7 +5,7 @@
 - GitHub 上现有的 AI 求职助手相关项目中，主要采用 JavaScript、TypeScript、HTML 等 Web 技术栈。本项目是目前检索到的较少见的覆盖 “用户画像—职业规划—岗位采集—人岗匹配—数据分析” 完整流程的 Python 项目。
 - 用户画像、岗位采集结果、人岗匹配结果、数据分析结果，用户均可在各阶段查看、复制或下载，系统处理过程具有较高的可观察性和可控性。
 - 本项目除依赖本地浏览器环境的爬虫功能外，其余功能均支持在线运行，用户无需进行本地部署即可使用。
-- 本项目的视频介绍见：[GitHub 开源｜我做了一个 AI 求职助手：自动分析简历、采集岗位、智能人岗匹配_bilibili](https://www.bilibili.com/video/BV168bv66E2N/?spm_id_from=333.1387.homepage.video_card.click&vd_source=b492c7ce1b069bbc2bb490c4e9ff37a7).
+- 本项目的视频介绍见：[GitHub 开源｜适合中国宝宝体质的 AI 求职助手：自动分析简历、采集岗位、智能人岗匹配_bilibili](https://www.bilibili.com/video/BV168bv66E2N/?spm_id_from=333.1387.homepage.video_card.click&vd_source=b492c7ce1b069bbc2bb490c4e9ff37a7).
 
 ## 0.1 线上模式
 
