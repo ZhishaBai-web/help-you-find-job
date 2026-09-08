@@ -1,2 +1,0 @@
--o Acquire::Check-Valid-Until=false
-fonts-noto-cjk
