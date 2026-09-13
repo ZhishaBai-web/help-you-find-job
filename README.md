@@ -50,7 +50,7 @@ help-you-find-job/
 - 关于 PyCharm 虚拟环境的创建：File → Settings... → Project：<你的项目名> → Python Interpreter → Add Interpreter → Add Local Interpreter... → OK
 - 关于第三方库下载的说明：由于 requirements.txt 中第三方库数量较多，下载较慢，若本地部署的目的仅为使用项目功能，不做项目改造，部署时不必 Download ZIP，只需下载爬虫相关的文件（page_1.py 和 scrapy_info.py）即可，下载第三方库时仅需安装爬虫和 Streamlit 相关依赖库（在 Terminal 输入：pip install DrissionPage streamlit 并回车），运行时，在 Terminal 输入：streamlit run page_1.py 并回车。使用本地爬虫功能获取数据后，其他功能均可通过线上模式实现。
 
-### 0.3 页面介绍
+## 0.3 页面介绍
 
 streamlit 运行后，将在浏览器看到工作喵页面（main 页），同时爬虫喵（page 1 页）、分析喵（page 2 页）、工具喵（page 3 页）均可点击打开。
 
