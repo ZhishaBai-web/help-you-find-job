@@ -33,7 +33,6 @@ help-you-find-job/
 ├── README.md                        # 项目说明文档
 ├── main.py                          # 主程序入口 (工作喵 页面)
 ├── msyh.ttc                         # 字体文件 (微软雅黑)
-├── packages.txt                     # 系统依赖包列表
 ├── requirements.txt                 # Python 依赖包列表
 ├── resume_portrait_keywords_ai.py   # 工作喵 相关支持函数
 ├── scores_info.py                   # 分析喵 相关支持函数
